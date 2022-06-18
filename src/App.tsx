@@ -1,25 +1,35 @@
+import { Card, CssBaseline, Grid } from '@mui/material';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import Scrollbar from 'react-smooth-scrollbar-z';
+import configureStore from './modules/store';
+import Students from './views/Students';
+
+const store = configureStore();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <CssBaseline />
+      <Grid container justifyContent="center" bgcolor="#dbdbdb" py={3} sx={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+      }}>
+        <Grid item xs={12} sm={8} md={6} lg={6} py={3} px={3} sx={{
+          height: '100%',
+        }}>
+          <Card sx={{
+            height: '100%',
+            borderRadius: '10px',
+          }}>
+            <Students />
+          </Card>
+        </Grid>
+      </Grid>
+    </Provider>
   );
 }
 
